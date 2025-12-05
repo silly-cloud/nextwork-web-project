@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: /target/nextwork-web-project.war
-    destination: /usr/share/tomcat/webapps/
+    destination: /var/lib/tomcat9/webapps/
 
 hooks:
   BeforeInstall:
@@ -20,4 +20,5 @@ hooks:
     location: scripts/stop_server.sh
     timeout: 300
     runas: root
+
 

@@ -1,14 +1,18 @@
 #!/bin/bash
 
-# Check if HTTPD is running, then stop it if it's found
-isExistApp=$(ps aux | grep httpd)
-if [[ -n $isExistApp ]]; then
-  sudo systemctl stop httpd.service
+# Stop HTTPD (Apache) service if it's running
+if systemctl is-active --quiet apache2.service; then
+  echo "Stopping Apache (HTTPD) service..."
+  sudo systemctl stop apache2.service
+else
+  echo "Apache (HTTPD) service is not running."
 fi
 
-# Check if Tomcat is running, then stop it if it's found
-isExistApp=$(ps aux | grep tomcat)
-if [[ -n $isExistApp ]]; then
+# Stop Tomcat service if it's running
+if systemctl is-active --quiet tomcat.service; then
+  echo "Stopping Tomcat service..."
   sudo systemctl stop tomcat.service
+else
+  echo "Tomcat service is not running."
 fi
 
